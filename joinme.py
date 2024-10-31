@@ -20,16 +20,16 @@ def download_session_file():
     if response.status_code == 200:
         with open('session_name.session', 'wb') as f:
             f.write(response.content)
-        print("Session file downloaded.")
+        print("Session file downloaded.", flush=True)
     else:
-        print("Failed to download session file. Status code:", response.status_code)
+        print("Failed to download session file. Status code:", response.status_code, flush=True)
 
 async def start_bot():
     # Download the session file before creating the Telegram client
     download_session_file()
 
     async with TelegramClient('session_name', api_id, api_hash) as client:
-        print("Bot started.")
+        print("Bot started.", flush=True)
 
         # Fetch all dialogs (chats, groups, and channels the bot has access to)
         dialogs = await client.get_dialogs()
@@ -38,7 +38,7 @@ async def start_bot():
         source_channel = next((dialog.entity for dialog in dialogs if dialog.name == source_channel_name), None)
 
         if not source_channel:
-            print("Could not find the source channel.")
+            print("Could not find the source channel.", flush=True)
             return
 
         # Get the members from the source channel
@@ -49,14 +49,14 @@ async def start_bot():
             try:
                 if member.username:  # Check if the member has a username
                     await client.send_message(member, "የ AB MARSHAL 100$ to 30k በዚ ቻናል ይለቀቃል። @fxnesa ለ Quality አገልግሎት እስከ እሮብ ሙከራ ላይ ይቆያል። @fxnesa")  # Send "Hi" message
-                    print(f"Message sent to {member.username}")
+                    print(f"Message sent to {member.username}", flush=True)
                 else:
-                    print(f"Member {member.id} does not have a username; skipping.")
+                    print(f"Member {member.id} does not have a username; skipping.", flush=True)
                 
                 # Wait for 1 minute before sending the next message
                 await asyncio.sleep(60)  # 60 seconds delay
             except Exception as e:
-                print(f"Failed to send message to {member.username if member.username else member.id}: {e}")
+                print(f"Failed to send message to {member.username if member.username else member.id}: {e}", flush=True)
 
 # Flask app setup
 app = Flask(__name__)
