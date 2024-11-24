@@ -5,14 +5,14 @@ import threading
 from flask import Flask, jsonify
 
 # Replace with your Telegram API credentials
-api_id = '29935142'  # Your API ID
-api_hash = 'b3fd3a84a34b3a203f846d9a5e8b8125'  # Your API Hash
+api_id = ''  # Your API ID
+api_hash = ''  # Your API Hash
 
 # Channel name (replace with the actual username or ID)
-source_channel_name = 'Miki FX Community'  # The name of the source channel
+source_channel_name = 'Group name from telegram'  # The name of the source channel
 
 # Google Drive file link for session file
-drive_link = "https://utfs.io/f/v9t8dkdjIAnjWwuQyZGL5h14CrkTz2KPAEXlgmbFpnSvD8js"
+drive_link = "our session file"
 
 # Function to download session file from Google Drive
 def download_session_file():
@@ -64,11 +64,11 @@ async def start_bot():
                     continue
 
                 # Send the message to the member
-                await client.send_message(member, "የ AB MARSHAL challenge, Xe sniper vip, Adds fx vip  በዚ ቻናል ይለቀቃል። @fxnesa  100% free new. Join blek kezi be free bzu neger memar ena metekem tchlalek.  ye ethiopia traderoch tebabrew paid service be free yemigegnibet channel new.")
+                await client.send_message(member, "Join link and description for people to join")
                 print(f"Message sent to {member.username if member.username else member.id}", flush=True)
 
-                # Wait for 1 minute before sending the next message
-                await asyncio.sleep(60)
+                # Wait for 10 minute before sending the next message
+                await asyncio.sleep(600)
 
             except Exception as e:
                 print(f"Failed to send message to {member.username if member.username else member.id}: {e}", flush=True)
